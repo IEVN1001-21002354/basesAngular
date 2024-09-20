@@ -1,1 +1,59 @@
-<p>product-list works!</p>
+<div class="card">
+    <div class="card-header">
+        Lista de productos
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">
+                Filtrar por:
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" name="filter">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Filtro: </h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="table-responsive">
+    <!-- Esta es una directiva estructural de Angular. 
+    Indica que la tabla solo se va a renderizar en el DOM si el array productos tiene elementos. 
+    Es decir, si productos.length es mayor a 0 (es decir, si hay productos disponibles), 
+    la tabla se muestra; si no hay productos, no se renderiza. -->
+    <table class="table" *ngIf="productos.length">
+        <thead>
+            <tr>
+                <th>
+                    <button (click)="mostrarImagen()" class="btn btn-primary" type="button">Imagen</button>
+                </th>
+                <th>Imagen</th>
+                <th>Modelo</th>
+                <th>Descripción</th>
+                <th>Año</th>
+                <th>Precio</th>
+                <th>Marca</th>
+                <th>Color</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Es como un foreach producto es la variable y productos es el arreglo-->
+            <tr *ngFor="let producto of productos">
+
+                <td *ngIf="muestraImg"> <img  [src]="producto.ImagenUrl" [title]="producto.Modelo" [style.width.px]="imagewidth" [style.margin.px]="imageMargin"> <!-- {{producto.ImagenUrl}} --></td>
+                <td>{{producto.Modelo}}</td>
+                <td>{{producto.Descripcion}}</td>
+                <td>{{producto.Year}}</td>
+                <td>{{producto.Precio}}</td>
+                <td>{{producto.Marca}}</td>
+                <td>{{producto.Color}}</td>
+                
+            </tr>
+        </tbody>
+    </table>
+</div>
+
